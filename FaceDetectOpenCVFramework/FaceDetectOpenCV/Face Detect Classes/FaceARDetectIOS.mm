@@ -13,6 +13,10 @@ LandmarkDetector::FaceModelParameters det_parameters;
 // The modules that are being used for tracking
 LandmarkDetector::CLNF clnf_model;
 
+@interface FaceARDetectIOS ()
+
+@end
+
 @implementation FaceARDetectIOS
 
 //bool inits_FaceAR();
@@ -85,6 +89,8 @@ LandmarkDetector::CLNF clnf_model;
                 {
                     cv::Point featurePoint((int)clnf_model.detected_landmarks.at<double>(i),
                                            (int)clnf_model.detected_landmarks.at<double>(i +n));
+                    cv::Rect boundingBox = clnf_model.GetBoundingBox();
+                    self.boundingBox = CGRectMake(boundingBox.x, boundingBox.y, boundingBox.size().width, boundingBox.size().height);
                     CGPoint featureCGpoint = CGPointMake(featurePoint.x, featurePoint.y);
                     [facePoints addObject:[NSValue valueWithCGPoint:featureCGpoint]];
                 }

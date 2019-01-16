@@ -75,7 +75,7 @@
         [[UIColor yellowColor] setStroke];
         
 //        [self drawPointsWithLandmarkPointArray:self.landmarkPoints.allPointsFromOpenCV withContext:context];
-        
+        // ********************************** Draw face points
         [self drawPointsWithLandmarkPointArray:landmarkPoints.chinPoints withContext:context];
 
         [self drawPointsWithLandmarkPointArray:landmarkPoints.leftEyebrowPoints withContext:context];
@@ -99,6 +99,9 @@
         CGPoint leftPoint = CGPointMake(self.landmarkPoints.chin.centre.x + self.landmarkPoints.chin.width / 2, topPoint.CGPointValue.y);
         CGSize size = CGSizeMake(self.landmarkPoints.chin.width, self.landmarkPoints.chin.height);
         
+        // **********************************
+        
+        // ********************************** Draw bounding rect
         CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 1.0);
         CGContextSetLineWidth(context, 3.0);
         
@@ -119,6 +122,14 @@
         [[UIColor purpleColor] setStroke];
         [self drawPointsWithLandmarkPointArray:@[topPoint] withContext:context];
         
+        // **********************************
+ 
+        // ********************************** Draw opencv bounding rect
+        
+        CGContextAddRect(context, self.faceDetectManager.boundingBox);
+        CGContextStrokeRect(context, self.faceDetectManager.boundingBox);
+        
+        // ********************************** Draw Cenrtal line
         CGContextSetRGBStrokeColor(context, 1.0, 0.0, 1.0, 1.0);
         CGContextSetLineWidth(context, 2.0);
         CGContextMoveToPoint(context, topPoint.CGPointValue.x, topPoint.CGPointValue.y);

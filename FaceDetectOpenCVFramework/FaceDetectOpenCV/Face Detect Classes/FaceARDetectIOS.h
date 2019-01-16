@@ -24,6 +24,8 @@
 
 @interface FaceARDetectIOS : NSObject
 
+@property (nonatomic) CGRect boundingBox;
+
 - (NSMutableArray *)run_FaceAR:(cv::Mat)captured_image frame__:(int)frame_count fx__:(double)fx fy__:(double)fy cx__:(double)cx cy__:(double)cy;
 
 - (BOOL)reset_FaceAR;
