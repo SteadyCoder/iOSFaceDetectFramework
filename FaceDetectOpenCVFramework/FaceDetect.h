@@ -1,0 +1,26 @@
+//
+//  TestClass.h
+//  FaceDetectOpenCVFramework
+//
+//  Created by Ivan on 1/15/19.
+//  Copyright © 2019 krestone. All rights reserved.
+//
+
+#ifndef TestClass_h
+#define TestClass_h
+
+#import <UIKit/UIKit.h>
+#import "HLGFaceElement.h"
+#import "HLGFacePoints.h"
+
+@interface FaceDetect : NSObject
+
+@property (nonatomic, readwrite, strong, nullable) UIImage *imageToApplyFaceDetect;
+@property (nonatomic, readwrite, strong, nullable) UIImage *resultImage;
+@property (nonatomic, readwrite, strong, nullable) HLGFacePoints *landmarkPoints;
+
+- (nullable UIImage *)faceDetectImage:(nonnull UIImage *)imageToDetect;
+
+@end
+
+#endif /* TestClass_h */
