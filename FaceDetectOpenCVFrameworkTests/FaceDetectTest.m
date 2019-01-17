@@ -32,10 +32,12 @@
     UIImage *testImage2 = [UIImage imageNamed:@"testFace2" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil];
     UIImage *testImage6 = [UIImage imageNamed:@"testFace6" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil];
     
-    UIImage *resultImage = [self.testClass faceDetectImage:testImage];
+    UIImage *resultImage = [self.testClass faceDetectImage:testImage drawLandmarkAndOtherParametrs:YES];
     UIImage *resultImage1 = [self.testClass faceDetectImage:testImage1];
-    UIImage *resultImage2 = [self.testClass faceDetectImage:testImage2];
-    UIImage *resultImage6 = [self.testClass faceDetectImage:testImage6];
+    UIImage *resultImage2 = [self.testClass faceDetectImage:testImage2 drawLandmarkAndOtherParametrs:YES];
+    [self.testClass faceDetectImage:testImage6];
+    [self.testClass cropExtraAreasOnResultImage];
+    UIImage *resultImage6 = self.testClass.resultImage;
     
      if (resultImage != nil) {
         NSLog(@"Face landamrks detected");

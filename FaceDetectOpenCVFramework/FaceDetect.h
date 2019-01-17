@@ -20,6 +20,8 @@
 @property (nonatomic, readwrite, strong, nullable) HLGFacePoints *landmarkPoints;
 
 - (nullable UIImage *)faceDetectImage:(nonnull UIImage *)imageToDetect;
+- (nullable UIImage *)faceDetectImage:(nonnull UIImage *)imageToDetect drawLandmarkAndOtherParametrs:(BOOL)draw;
+- (void)cropExtraAreasOnResultImage;
 
 @end
 

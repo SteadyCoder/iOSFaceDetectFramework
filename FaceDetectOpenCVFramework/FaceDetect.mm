@@ -37,7 +37,11 @@
     return self;
 }
 
-- (UIImage *)faceDetectImage:(UIImage *)imageToDetect {
+- (nullable UIImage *)faceDetectImage:(nonnull UIImage *)imageToDetect {
+    return [self faceDetectImage:imageToDetect drawLandmarkAndOtherParametrs:NO];
+}
+
+- (nullable UIImage *)faceDetectImage:(nonnull UIImage *)imageToDetect drawLandmarkAndOtherParametrs:(BOOL)draw  {
     self.imageToApplyFaceDetect = imageToDetect;
     cv::Mat matrixFromImage = [self imageToOpenCv];
     
@@ -56,14 +60,14 @@
         if (facePoints) {
             self.landmarkPoints = [[HLGFacePoints alloc] initWithFaceDetectedPoints:facePoints];
             
-            [self drawLandmarksOnImage:self.landmarkPoints];
+            [self drawLandmarksOnImage:self.landmarkPoints drawLandmarkAndOtherParametrs:draw];
         }
         self.frameCount = self.frameCount + 1;
     }
     return self.resultImage;
 }
 
-- (void)drawLandmarksOnImage:(HLGFacePoints *)landmarkPoints {
+- (void)drawLandmarksOnImage:(HLGFacePoints *)landmarkPoints drawLandmarkAndOtherParametrs:(BOOL)draw {
     if (landmarkPoints.allPointsFromOpenCV) {
         self.resultImage = [self.imageToApplyFaceDetect copy];
         
@@ -73,58 +77,55 @@
         
         CGContextRef context = UIGraphicsGetCurrentContext();
         
-        [[UIColor yellowColor] setStroke];
-        
-//        [self drawPointsWithLandmarkPointArray:self.landmarkPoints.allPointsFromOpenCV withContext:context];
-        // ********************************** Draw face points
-        [self drawPointsWithLandmarkPointArray:landmarkPoints.chinPoints withContext:context];
-
-        [self drawPointsWithLandmarkPointArray:landmarkPoints.leftEyebrowPoints withContext:context];
-        [self drawPointsWithLandmarkPointArray:landmarkPoints.rightEyebrowPoints withContext:context];
-
-        [self drawPointsWithLandmarkPointArray:landmarkPoints.nosePoints withContext:context];
-
-        [self drawPointsWithLandmarkPointArray:landmarkPoints.leftEyePoints withContext:context];
-        [self drawPointsWithLandmarkPointArray:landmarkPoints.rightEyePoints withContext:context];
-
-        [self drawPointsWithLandmarkPointArray:landmarkPoints.mouthPoints withContext:context];
-        
-        NSValue *noseCentre = [NSValue valueWithCGPoint:CGPointMake(landmarkPoints.noseCenterPoint.x, landmarkPoints.noseCenterPoint.y)];
-        
-        [[UIColor redColor] setStroke];
-        [self drawPointsWithLandmarkPointArray:@[noseCentre] withContext:context];
-        
-        NSValue *topPoint = [NSValue valueWithCGPoint:CGPointMake(self.landmarkPoints.chin.centre.x, self.landmarkPoints.chin.centre.y - self.landmarkPoints.chin.height)];
-        
-        // **********************************
-        // ********************************** Draw opencv bounding rect
-        
-        CGRect changedRect = self.faceDetectManager.boundingBox;
-        NSLog(@"Bounding rect %@", NSStringFromCGRect(self.faceDetectManager.boundingBox));
-        changedRect.size.height *= 1.25;
-        changedRect.size.width *= 1.25;
-        NSLog(@"Bounding rect2 %@", NSStringFromCGRect(changedRect));
-        
-        CGContextAddRect(context, self.faceDetectManager.boundingBox);
-        CGContextStrokeRect(context, self.faceDetectManager.boundingBox);
-        
-        // **********************************
-        // ********************************** Centre eyes
-        
-        [[UIColor greenColor] setStroke];
-        NSValue *centreBetweenEyes = [NSValue valueWithCGPoint:self.landmarkPoints.centerBetweenEyesPoint];
-        [self drawPointsWithLandmarkPointArray:@[centreBetweenEyes] withContext:context];
-        
-        // **********************************
+        if (draw) {
+            [self drawLandmarksAndOtherParametersWithContext:context];
+        }
         
         UIImage *finalImage = UIGraphicsGetImageFromCurrentImageContext();
-        
-        finalImage = [PhotoCrop facePhotoCrop:self.landmarkPoints photoToCrop:finalImage];
         
         UIGraphicsEndImageContext();
         
         self.resultImage = finalImage;
     }
+}
+
+- (void)drawLandmarksAndOtherParametersWithContext:(CGContextRef)context {
+    [[UIColor yellowColor] setStroke];
+    
+    // ********************************** Draw face points
+    [self drawPointsWithLandmarkPointArray:self.landmarkPoints.chinPoints withContext:context];
+    
+    [self drawPointsWithLandmarkPointArray:self.landmarkPoints.leftEyebrowPoints withContext:context];
+    [self drawPointsWithLandmarkPointArray:self.landmarkPoints.rightEyebrowPoints withContext:context];
+    
+    [self drawPointsWithLandmarkPointArray:self.landmarkPoints.nosePoints withContext:context];
+    
+    [self drawPointsWithLandmarkPointArray:self.landmarkPoints.leftEyePoints withContext:context];
+    [self drawPointsWithLandmarkPointArray:self.landmarkPoints.rightEyePoints withContext:context];
+    
+    [self drawPointsWithLandmarkPointArray:self.landmarkPoints.mouthPoints withContext:context];
+    
+    NSValue *noseCentre = [NSValue valueWithCGPoint:CGPointMake(self.landmarkPoints.noseCenterPoint.x, self.landmarkPoints.noseCenterPoint.y)];
+    
+    [[UIColor redColor] setStroke];
+    [self drawPointsWithLandmarkPointArray:@[noseCentre] withContext:context];
+    
+    // **********************************
+    // ********************************** Draw opencv bounding rect
+    CGContextAddRect(context, self.faceDetectManager.boundingBox);
+    CGContextStrokeRect(context, self.faceDetectManager.boundingBox);
+    
+    // **********************************
+    // ********************************** Centre eyes
+    
+    [[UIColor greenColor] setStroke];
+    NSValue *centreBetweenEyes = [NSValue valueWithCGPoint:self.landmarkPoints.centerBetweenEyesPoint];
+    [self drawPointsWithLandmarkPointArray:@[centreBetweenEyes] withContext:context];
+    // **********************************
+}
+
+- (void)cropExtraAreasOnResultImage {
+    self.resultImage = [PhotoCrop facePhotoCrop:self.landmarkPoints photoToCrop:self.resultImage];
 }
 
 - (void)drawPointsWithLandmarkPointArray:(NSArray<NSValue *> *)elementLandmarkPoints withContext:(CGContextRef)context {
