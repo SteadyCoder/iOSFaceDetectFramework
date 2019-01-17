@@ -12,6 +12,7 @@
 
 #import <opencv2/imgcodecs/ios.h>
 #import "FaceDetectOpenCV/Face Detect Classes/FaceARDetectIOS.h"
+#import "PhotoCrop.h"
 
 @interface FaceDetect()
 
@@ -95,49 +96,31 @@
         
         NSValue *topPoint = [NSValue valueWithCGPoint:CGPointMake(self.landmarkPoints.chin.centre.x, self.landmarkPoints.chin.centre.y - self.landmarkPoints.chin.height)];
         
-        CGPoint rightPoint = CGPointMake(self.landmarkPoints.chin.centre.x - self.landmarkPoints.chin.width / 2, topPoint.CGPointValue.y);
-        CGPoint leftPoint = CGPointMake(self.landmarkPoints.chin.centre.x + self.landmarkPoints.chin.width / 2, topPoint.CGPointValue.y);
-        CGSize size = CGSizeMake(self.landmarkPoints.chin.width, self.landmarkPoints.chin.height);
-        
         // **********************************
-        
-        // ********************************** Draw bounding rect
-        CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 1.0);
-        CGContextSetLineWidth(context, 3.0);
-        
-        CGContextMoveToPoint(context, rightPoint.x, rightPoint.y);
-        CGContextAddLineToPoint(context, leftPoint.x, leftPoint.y);
-        
-        CGContextMoveToPoint(context, leftPoint.x, leftPoint.y);
-        CGContextAddLineToPoint(context, leftPoint.x, leftPoint.y + self.landmarkPoints.chin.height);
-        
-        CGContextMoveToPoint(context, leftPoint.x, leftPoint.y + self.landmarkPoints.chin.height);
-        CGContextAddLineToPoint(context, leftPoint.x - self.landmarkPoints.chin.width, leftPoint.y + self.landmarkPoints.chin.height);
-        
-        CGContextMoveToPoint(context, leftPoint.x - self.landmarkPoints.chin.width, leftPoint.y + self.landmarkPoints.chin.height);
-        CGContextAddLineToPoint(context, rightPoint.x, rightPoint.y);
-        
-        CGContextStrokePath(context);
-        
-        [[UIColor purpleColor] setStroke];
-        [self drawPointsWithLandmarkPointArray:@[topPoint] withContext:context];
-        
-        // **********************************
- 
         // ********************************** Draw opencv bounding rect
+        
+        CGRect changedRect = self.faceDetectManager.boundingBox;
+        NSLog(@"Bounding rect %@", NSStringFromCGRect(self.faceDetectManager.boundingBox));
+        changedRect.size.height *= 1.25;
+        changedRect.size.width *= 1.25;
+        NSLog(@"Bounding rect2 %@", NSStringFromCGRect(changedRect));
         
         CGContextAddRect(context, self.faceDetectManager.boundingBox);
         CGContextStrokeRect(context, self.faceDetectManager.boundingBox);
         
-        // ********************************** Draw Cenrtal line
-        CGContextSetRGBStrokeColor(context, 1.0, 0.0, 1.0, 1.0);
-        CGContextSetLineWidth(context, 2.0);
-        CGContextMoveToPoint(context, topPoint.CGPointValue.x, topPoint.CGPointValue.y);
-        CGContextAddLineToPoint(context, self.landmarkPoints.chin.centre.x, self.landmarkPoints.chin.centre.y);
-        CGContextStrokePath(context);
+        // **********************************
+        // ********************************** Centre eyes
+        
+        [[UIColor greenColor] setStroke];
+        NSValue *centreBetweenEyes = [NSValue valueWithCGPoint:self.landmarkPoints.centerBetweenEyesPoint];
+        [self drawPointsWithLandmarkPointArray:@[centreBetweenEyes] withContext:context];
+        
+        // **********************************
         
         UIImage *finalImage = UIGraphicsGetImageFromCurrentImageContext();
-
+        
+        finalImage = [PhotoCrop facePhotoCrop:self.landmarkPoints photoToCrop:finalImage];
+        
         UIGraphicsEndImageContext();
         
         self.resultImage = finalImage;

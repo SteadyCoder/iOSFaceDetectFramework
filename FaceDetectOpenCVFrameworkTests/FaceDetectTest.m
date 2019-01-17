@@ -29,13 +29,13 @@
 - (void)testExample {
     UIImage *testImage = [UIImage imageNamed:@"testFace3" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil];
     UIImage *testImage1 = [UIImage imageNamed:@"testFace4" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil];
-    UIImage *testImage2 = [UIImage imageNamed:@"testFace5" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil];
+    UIImage *testImage2 = [UIImage imageNamed:@"testFace2" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil];
     UIImage *testImage6 = [UIImage imageNamed:@"testFace6" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil];
     
     UIImage *resultImage = [self.testClass faceDetectImage:testImage];
     UIImage *resultImage1 = [self.testClass faceDetectImage:testImage1];
     UIImage *resultImage2 = [self.testClass faceDetectImage:testImage2];
-    UIImage *resultImage3 = [self.testClass faceDetectImage:testImage6];
+    UIImage *resultImage6 = [self.testClass faceDetectImage:testImage6];
     
      if (resultImage != nil) {
         NSLog(@"Face landamrks detected");

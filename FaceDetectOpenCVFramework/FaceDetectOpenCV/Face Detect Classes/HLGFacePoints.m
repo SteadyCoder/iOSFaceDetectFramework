@@ -37,6 +37,8 @@ typedef NS_ENUM(NSUInteger, HLGPointType) {
     HLGRightEyeEnd = 47,
     
     HLGMouthStart = 48,
+    HLGMouthLeftCorner = 48,
+    HLGMouthRightCorner = 54,
     HLGMouthCenter = 62,
     HLGMouthEnd = 67
 };
@@ -44,21 +46,24 @@ typedef NS_ENUM(NSUInteger, HLGPointType) {
 
 @implementation HLGFacePoints
 
-- (instancetype)initWithFaceDetectedPoints:(NSMutableArray *)facePoints {
+- (instancetype)initWithFaceDetectedPoints:(NSMutableArray<NSValue *> *)facePoints {
     if (self = [super init]) {
         // Chin
         _chinPoints = [facePoints subarrayWithRange:NSMakeRange(HLGRightCheek, HLGLeftCheek + 1)];
-        _chin = [[HLGFaceElement alloc] initWithPoints:_chinPoints];
-        _chinCenterPoint = [[facePoints objectAtIndex:HLGChin] CGPointValue];
+        _chin = [[HLGChinElement alloc] initWithPoints:_chinPoints];
         _chin.centre = _chinCenterPoint;
         _chin.width = [self getChinWidth];
         _chin.height = [self getChinHeight];
+        _chin.centre = [self getChinCentre];
+        _chin.bottomCentre = [[facePoints objectAtIndex:HLGChin] CGPointValue];
         // Left eye brow
         _leftEyebrowPoints = [facePoints subarrayWithRange:NSMakeRange(HLGLeftEyebrowStart , HLGLeftEyebrowEnd - HLGLeftEyebrowStart + 1)];
         _leftEyeBrow = [[HLGFaceElement alloc] initWithPoints:_leftEyebrowPoints];
+        _leftEyeBrow.centre = facePoints[HLGLeftEyebrowCenter].CGPointValue;
         // Right eye brow
         _rightEyebrowPoints = [facePoints subarrayWithRange:NSMakeRange(HLGRightEyebrowStart, HLGRightEyebrowEnd - HLGRightEyebrowStart + 1)];
         _rightEyeBrow = [[HLGFaceElement alloc] initWithPoints:_rightEyebrowPoints];
+        _rightEyeBrow.centre = facePoints[HLGRightEyebrowCenter].CGPointValue;
         // Nose
         _nosePoints = [facePoints subarrayWithRange:NSMakeRange(HLGNoseStart, HLGNoseEnd - HLGNoseStart + 1)];
         _nose = [[HLGFaceElement alloc] initWithPoints:_nosePoints];
@@ -76,9 +81,11 @@ typedef NS_ENUM(NSUInteger, HLGPointType) {
         _rightEye.centre = _rightEyeCenterPoint;
         // Mouth
         _mouthPoints = [facePoints subarrayWithRange:NSMakeRange(HLGMouthStart, HLGMouthEnd - HLGMouthStart + 1)];
-        _mouth = [[HLGFaceElement alloc] initWithPoints:_mouthPoints];
+        _mouth = [[HLGMouthElement alloc] initWithPoints:_mouthPoints];
         _mouthCenterPoint = [self getCenterBtwFirstPoint:[[facePoints objectAtIndex:HLGMouthCenter] CGPointValue] andSecondPoint:[[facePoints objectAtIndex:HLGMouthEnd - 1] CGPointValue]];
         _mouth.centre = _mouthCenterPoint;
+        _mouth.leftCorner = facePoints[HLGMouthLeftCorner].CGPointValue;
+        _mouth.rightCorner = facePoints[HLGMouthRightCorner].CGPointValue;
         
         // Other
         _rightEyeTop = [[facePoints objectAtIndex:43] CGPointValue];
@@ -106,6 +113,15 @@ typedef NS_ENUM(NSUInteger, HLGPointType) {
     return sqrt((secondPoint.x - firstPoint.x) * (secondPoint.x - firstPoint.x) + (secondPoint.y - firstPoint.y) * (secondPoint.y - firstPoint.y));
 }
 
+- (CGPoint)getChinCentre {
+    CGPoint startPoint = self.chin.elementPoints.firstObject.CGPointValue;
+    CGPoint endPoint = self.chin.elementPoints.lastObject.CGPointValue;
+    CGPoint topChinCentre = [self getCenterBtwFirstPoint:startPoint andSecondPoint:endPoint];
+    CGPoint bottomChinCentre = self.chin.centre;
+    
+    return [self getCenterBtwFirstPoint:topChinCentre andSecondPoint:bottomChinCentre];
+}
+
 - (CGFloat)getChinWidth {
     return self.chin.elementPoints.lastObject.CGPointValue.x - self.chin.elementPoints.firstObject.CGPointValue.x;
 }
@@ -113,12 +129,12 @@ typedef NS_ENUM(NSUInteger, HLGPointType) {
 - (CGFloat)getChinHeight {
     CGPoint startPoint = self.chin.elementPoints.firstObject.CGPointValue;
     CGPoint endPoint = self.chin.elementPoints.lastObject.CGPointValue;
-    CGPoint centreBetweenPoints = [self getCenterBtwFirstPoint:startPoint andSecondPoint:endPoint];
+    CGPoint topChinCentre = [self getCenterBtwFirstPoint:startPoint andSecondPoint:endPoint];
     
     // Distance between top centre point of chin and bottom centre point of chin
-    CGFloat chinHeight =  self.chin.centre.y - centreBetweenPoints.y;
+    CGFloat chinHeight =  self.chin.centre.y - topChinCentre.y;
     
-    return chinHeight * 2;
+    return chinHeight;
 }
 
 

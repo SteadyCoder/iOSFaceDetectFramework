@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0E916021F0922E00E6B86B /* PhotoCrop.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0E915E21F0922E00E6B86B /* PhotoCrop.h */; };
+		2C0E916121F0922E00E6B86B /* PhotoCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0E915F21F0922E00E6B86B /* PhotoCrop.m */; };
+		2C0E916521F09AC400E6B86B /* UIImage+Crop.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0E916321F09AC400E6B86B /* UIImage+Crop.h */; };
+		2C0E916621F09AC400E6B86B /* UIImage+Crop.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0E916421F09AC400E6B86B /* UIImage+Crop.m */; };
 		2C26296921EE13CF00566BDA /* FaceDetectOpenCVFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C26295F21EE13CF00566BDA /* FaceDetectOpenCVFramework.framework */; };
 		2C26296E21EE13CF00566BDA /* FaceDetectOpenCVFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C26296D21EE13CF00566BDA /* FaceDetectOpenCVFrameworkTests.swift */; };
 		2C26297021EE13CF00566BDA /* FaceDetectOpenCVFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C26296221EE13CF00566BDA /* FaceDetectOpenCVFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -63,6 +67,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C0E915E21F0922E00E6B86B /* PhotoCrop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoCrop.h; sourceTree = "<group>"; };
+		2C0E915F21F0922E00E6B86B /* PhotoCrop.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoCrop.m; sourceTree = "<group>"; };
+		2C0E916321F09AC400E6B86B /* UIImage+Crop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Crop.h"; sourceTree = "<group>"; };
+		2C0E916421F09AC400E6B86B /* UIImage+Crop.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Crop.m"; sourceTree = "<group>"; };
 		2C26295F21EE13CF00566BDA /* FaceDetectOpenCVFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FaceDetectOpenCVFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C26296221EE13CF00566BDA /* FaceDetectOpenCVFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FaceDetectOpenCVFramework.h; sourceTree = "<group>"; };
 		2C26296321EE13CF00566BDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -132,6 +140,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C0E916221F09AAE00E6B86B /* Custom Categories */ = {
+			isa = PBXGroup;
+			children = (
+				2C0E916321F09AC400E6B86B /* UIImage+Crop.h */,
+				2C0E916421F09AC400E6B86B /* UIImage+Crop.m */,
+			);
+			path = "Custom Categories";
+			sourceTree = "<group>";
+		};
 		2C26295521EE13CE00566BDA = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +177,9 @@
 				2C26296321EE13CF00566BDA /* Info.plist */,
 				2C262A3921EE352600566BDA /* FaceDetect.h */,
 				2C262A3721EE351500566BDA /* FaceDetect.mm */,
+				2C0E915E21F0922E00E6B86B /* PhotoCrop.h */,
+				2C0E915F21F0922E00E6B86B /* PhotoCrop.m */,
+				2C0E916221F09AAE00E6B86B /* Custom Categories */,
 				2C262A4521EF3E0900566BDA /* Asset.xcassets */,
 			);
 			path = FaceDetectOpenCVFramework;
@@ -283,6 +303,8 @@
 				2C2629A721EE2FE700566BDA /* FaceDetectFailedAlertView.h in Headers */,
 				2C2629AD21EE2FE700566BDA /* LandmarkCoreIncludes.h in Headers */,
 				2C2629A221EE2FE700566BDA /* PDM.h in Headers */,
+				2C0E916021F0922E00E6B86B /* PhotoCrop.h in Headers */,
+				2C0E916521F09AC400E6B86B /* UIImage+Crop.h in Headers */,
 				2C2629B221EE2FE700566BDA /* LandmarkDetectorUtils.h in Headers */,
 				2C262A4021EF37E100566BDA /* HLGFacePoints.h in Headers */,
 				2C26297021EE13CF00566BDA /* FaceDetectOpenCVFramework.h in Headers */,
@@ -406,7 +428,9 @@
 				2C2629AA21EE2FE700566BDA /* CCNF_patch_expert.cpp in Sources */,
 				2C2629A421EE2FE700566BDA /* Patch_experts.cpp in Sources */,
 				2C2629A121EE2FE700566BDA /* LandmarkDetectorUtils.cpp in Sources */,
+				2C0E916621F09AC400E6B86B /* UIImage+Crop.m in Sources */,
 				2C2629B721EE2FE700566BDA /* stdafx.cpp in Sources */,
+				2C0E916121F0922E00E6B86B /* PhotoCrop.m in Sources */,
 				2C2629B521EE2FE700566BDA /* PDM.cpp in Sources */,
 				2C2629B821EE2FE700566BDA /* LandmarkDetectorFunc.cpp in Sources */,
 				2C262A5921EF961400566BDA /* HLGFaceElement.m in Sources */,

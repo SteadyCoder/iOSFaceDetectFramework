@@ -24,4 +24,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface HLGChinElement : HLGFaceElement
+
+@property (nonatomic, readwrite) CGPoint topCentre;
+@property (nonatomic, readwrite) CGPoint bottomCentre;
+
+@end
+
+@interface HLGMouthElement : HLGFaceElement
+
+@property (nonatomic, readwrite) CGPoint leftCorner;
+@property (nonatomic, readwrite) CGPoint rightCorner;
+
+@end
+
 NS_ASSUME_NONNULL_END

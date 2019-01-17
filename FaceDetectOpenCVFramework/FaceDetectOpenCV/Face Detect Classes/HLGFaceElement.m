@@ -29,3 +29,11 @@
 }
 
 @end
+
+@implementation HLGChinElement
+
+@end
+
+@implementation HLGMouthElement
+
+@end

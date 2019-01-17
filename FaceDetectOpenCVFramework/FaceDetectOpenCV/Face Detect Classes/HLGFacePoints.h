@@ -10,7 +10,7 @@
 #import <CoreGraphics/CGGeometry.h>
 #import <UIKit/UIKit.h>
 
-@class HLGFaceElement;
+@class HLGFaceElement, HLGChinElement, HLGMouthElement;
 
 @interface HLGFacePoints : NSObject
 
@@ -19,8 +19,8 @@
 @property (nonatomic, strong) HLGFaceElement *leftEyeBrow;
 @property (nonatomic, strong) HLGFaceElement *rightEyeBrow;
 @property (nonatomic, strong) HLGFaceElement *nose;
-@property (nonatomic, strong) HLGFaceElement *mouth;
-@property (nonatomic, strong) HLGFaceElement *chin;
+@property (nonatomic, strong) HLGMouthElement *mouth;
+@property (nonatomic, strong) HLGChinElement *chin;
 
 
 /**
@@ -32,29 +32,29 @@
  @attention
  Right eye means right from how do we look at the photo
  */
-@property (nonatomic, readonly) NSArray *rightEyePoints;
+@property (nonatomic, readonly) NSArray<NSValue *> *rightEyePoints;
 
 /**
  @attention
  Left eye means left from how do we look at the photo
  */
-@property (nonatomic, readonly) NSArray *leftEyePoints;
+@property (nonatomic, readonly) NSArray<NSValue *> *leftEyePoints;
 
 /**
  @attention
  Right eyebrow means right from how do we look at the photo
  */
-@property (nonatomic, readonly) NSArray *rightEyebrowPoints;
+@property (nonatomic, readonly) NSArray<NSValue *> *rightEyebrowPoints;
 
 /**
  @attention
  Left eyebrow means left from how do we look at the photo
  */
-@property (nonatomic, readonly) NSArray *leftEyebrowPoints;
+@property (nonatomic, readonly) NSArray<NSValue *> *leftEyebrowPoints;
 
-@property (nonatomic, readonly) NSArray *nosePoints;
-@property (nonatomic, readonly) NSArray *mouthPoints;
-@property (nonatomic, readonly) NSArray *chinPoints;
+@property (nonatomic, readonly) NSArray<NSValue *> *nosePoints;
+@property (nonatomic, readonly) NSArray<NSValue *> *mouthPoints;
+@property (nonatomic, readonly) NSArray<NSValue *> *chinPoints;
 
 @property (nonatomic, readonly) CGPoint noseCenterPoint;
 @property (nonatomic, readonly) CGPoint mouthCenterPoint;
@@ -69,6 +69,6 @@
 
 @property (nonatomic, readonly) CGFloat angleOfHead;
 
-- (instancetype)initWithFaceDetectedPoints:(NSMutableArray *)facePoints NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithFaceDetectedPoints:(NSMutableArray<NSValue *> *)facePoints NS_DESIGNATED_INITIALIZER;
 
 @end
