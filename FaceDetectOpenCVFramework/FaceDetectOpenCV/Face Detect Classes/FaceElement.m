@@ -6,9 +6,9 @@
 //  Copyright © 2019 krestone. All rights reserved.
 //
 
-#import "HLGFaceElement.h"
+#import "FaceElement.h"
 
-@implementation HLGFaceElement
+@implementation FaceElement
 
 - (instancetype)init {
     self = [super init];
@@ -30,10 +30,10 @@
 
 @end
 
-@implementation HLGChinElement
+@implementation ChinElement
 
 @end
 
-@implementation HLGMouthElement
+@implementation MouthElement
 
 @end

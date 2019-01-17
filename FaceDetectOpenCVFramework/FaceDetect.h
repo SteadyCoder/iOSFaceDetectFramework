@@ -10,14 +10,14 @@
 #define TestClass_h
 
 #import <UIKit/UIKit.h>
-#import "HLGFaceElement.h"
-#import "HLGFacePoints.h"
+
+@class FacePoints;
 
 @interface FaceDetect : NSObject
 
 @property (nonatomic, readwrite, strong, nullable) UIImage *imageToApplyFaceDetect;
 @property (nonatomic, readwrite, strong, nullable) UIImage *resultImage;
-@property (nonatomic, readwrite, strong, nullable) HLGFacePoints *landmarkPoints;
+@property (nonatomic, readwrite, strong, nullable) FacePoints *landmarkPoints;
 
 - (nullable UIImage *)faceDetectImage:(nonnull UIImage *)imageToDetect;
 - (nullable UIImage *)faceDetectImage:(nonnull UIImage *)imageToDetect drawLandmarkAndOtherParametrs:(BOOL)draw;

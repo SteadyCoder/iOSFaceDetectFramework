@@ -1,5 +1,5 @@
 //
-//  HLGFacePoints.h
+//  FacePoints.h
 //  Halogram
 //
 //  Created by Ira on 02.04.18.
@@ -10,17 +10,17 @@
 #import <CoreGraphics/CGGeometry.h>
 #import <UIKit/UIKit.h>
 
-@class HLGFaceElement, HLGChinElement, HLGMouthElement;
+@class FaceElement, ChinElement, MouthElement;
 
-@interface HLGFacePoints : NSObject
+@interface FacePoints : NSObject
 
-@property (nonatomic, strong) HLGFaceElement *leftEye;
-@property (nonatomic, strong) HLGFaceElement *rightEye;
-@property (nonatomic, strong) HLGFaceElement *leftEyeBrow;
-@property (nonatomic, strong) HLGFaceElement *rightEyeBrow;
-@property (nonatomic, strong) HLGFaceElement *nose;
-@property (nonatomic, strong) HLGMouthElement *mouth;
-@property (nonatomic, strong) HLGChinElement *chin;
+@property (nonatomic, strong) FaceElement *leftEye;
+@property (nonatomic, strong) FaceElement *rightEye;
+@property (nonatomic, strong) FaceElement *leftEyeBrow;
+@property (nonatomic, strong) FaceElement *rightEyeBrow;
+@property (nonatomic, strong) FaceElement *nose;
+@property (nonatomic, strong) MouthElement *mouth;
+@property (nonatomic, strong) ChinElement *chin;
 
 
 /**

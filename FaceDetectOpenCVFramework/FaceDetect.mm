@@ -8,11 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "FaceDetect.h"
-#import "FaceDetectOpenCV/Face Detect Classes/HLGFacePoints.h"
+#import "FaceDetectOpenCV/Face Detect Classes/FacePoints.h"
 
 #import <opencv2/imgcodecs/ios.h>
 #import "FaceDetectOpenCV/Face Detect Classes/FaceARDetectIOS.h"
 #import "PhotoCrop.h"
+
+#import "FaceElement.h"
+#import "FaceDetectOpenCV/Face Detect Classes/FacePoints.h"
 
 @interface FaceDetect()
 
@@ -58,7 +61,7 @@
         
         NSMutableArray *facePoints = [self.faceDetectManager run_FaceAR:matrixFromImage frame__:self.frameCount fx__:fx fy__:fy cx__:cx cy__:cy];
         if (facePoints) {
-            self.landmarkPoints = [[HLGFacePoints alloc] initWithFaceDetectedPoints:facePoints];
+            self.landmarkPoints = [[FacePoints alloc] initWithFaceDetectedPoints:facePoints];
             
             [self drawLandmarksOnImage:self.landmarkPoints drawLandmarkAndOtherParametrs:draw];
         }
@@ -67,7 +70,7 @@
     return self.resultImage;
 }
 
-- (void)drawLandmarksOnImage:(HLGFacePoints *)landmarkPoints drawLandmarkAndOtherParametrs:(BOOL)draw {
+- (void)drawLandmarksOnImage:(FacePoints *)landmarkPoints drawLandmarkAndOtherParametrs:(BOOL)draw {
     if (landmarkPoints.allPointsFromOpenCV) {
         self.resultImage = [self.imageToApplyFaceDetect copy];
         

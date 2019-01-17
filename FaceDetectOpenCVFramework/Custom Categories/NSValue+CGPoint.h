@@ -1,5 +1,5 @@
 //
-//  PhotoCrop.h
+//  NSValue+CGPoint.h
 //  FaceDetectOpenCVFramework
 //
 //  Created by Ivan on 1/17/19.
@@ -11,11 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class FacePoints;
+@interface NSValue (CGPoint)
 
-@interface PhotoCrop : NSObject
-
-+ (UIImage *)facePhotoCrop:(FacePoints *)facePoints photoToCrop:(UIImage *)photoToCrop;
++ (NSValue *)valueFromCGPoint:(CGPoint)point;
 
 @end
 

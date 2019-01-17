@@ -11,6 +11,10 @@
 		2C0E916121F0922E00E6B86B /* PhotoCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0E915F21F0922E00E6B86B /* PhotoCrop.m */; };
 		2C0E916521F09AC400E6B86B /* UIImage+Crop.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0E916321F09AC400E6B86B /* UIImage+Crop.h */; };
 		2C0E916621F09AC400E6B86B /* UIImage+Crop.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0E916421F09AC400E6B86B /* UIImage+Crop.m */; };
+		2C0E916A21F0A82700E6B86B /* FaceDetect.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C262A3921EE352600566BDA /* FaceDetect.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2C0E916C21F0B1C000E6B86B /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C0E916B21F0B1C000E6B86B /* Asset.xcassets */; };
+		2C0E916F21F0BE0600E6B86B /* NSValue+CGPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0E916D21F0BE0600E6B86B /* NSValue+CGPoint.h */; };
+		2C0E917021F0BE0600E6B86B /* NSValue+CGPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0E916E21F0BE0600E6B86B /* NSValue+CGPoint.m */; };
 		2C26296921EE13CF00566BDA /* FaceDetectOpenCVFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C26295F21EE13CF00566BDA /* FaceDetectOpenCVFramework.framework */; };
 		2C26296E21EE13CF00566BDA /* FaceDetectOpenCVFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C26296D21EE13CF00566BDA /* FaceDetectOpenCVFrameworkTests.swift */; };
 		2C26297021EE13CF00566BDA /* FaceDetectOpenCVFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C26296221EE13CF00566BDA /* FaceDetectOpenCVFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -45,15 +49,13 @@
 		2C2629B721EE2FE700566BDA /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C26299A21EE2FE700566BDA /* stdafx.cpp */; };
 		2C2629B821EE2FE700566BDA /* LandmarkDetectorFunc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C26299B21EE2FE700566BDA /* LandmarkDetectorFunc.cpp */; };
 		2C262A3821EE351500566BDA /* FaceDetect.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C262A3721EE351500566BDA /* FaceDetect.mm */; };
-		2C262A4021EF37E100566BDA /* HLGFacePoints.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C262A3E21EF37E100566BDA /* HLGFacePoints.h */; };
-		2C262A4121EF37E100566BDA /* HLGFacePoints.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C262A3F21EF37E100566BDA /* HLGFacePoints.m */; };
+		2C262A4021EF37E100566BDA /* FacePoints.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C262A3E21EF37E100566BDA /* FacePoints.h */; };
+		2C262A4121EF37E100566BDA /* FacePoints.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C262A3F21EF37E100566BDA /* FacePoints.m */; };
 		2C262A4421EF3D7A00566BDA /* FaceDetectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C262A4321EF3D7A00566BDA /* FaceDetectTest.m */; };
-		2C262A4621EF3E0900566BDA /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C262A4521EF3E0900566BDA /* Asset.xcassets */; };
 		2C262A4F21EF4D5300566BDA /* classifiers in Resources */ = {isa = PBXBuildFile; fileRef = 2C262A4D21EF4D5300566BDA /* classifiers */; };
 		2C262A5021EF4D5300566BDA /* model in Resources */ = {isa = PBXBuildFile; fileRef = 2C262A4E21EF4D5300566BDA /* model */; };
-		2C262A5121EF4EAB00566BDA /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C262A4521EF3E0900566BDA /* Asset.xcassets */; };
-		2C262A5821EF961400566BDA /* HLGFaceElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C262A5621EF961400566BDA /* HLGFaceElement.h */; };
-		2C262A5921EF961400566BDA /* HLGFaceElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C262A5721EF961400566BDA /* HLGFaceElement.m */; };
+		2C262A5821EF961400566BDA /* FaceElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C262A5621EF961400566BDA /* FaceElement.h */; };
+		2C262A5921EF961400566BDA /* FaceElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C262A5721EF961400566BDA /* FaceElement.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,9 @@
 		2C0E915F21F0922E00E6B86B /* PhotoCrop.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoCrop.m; sourceTree = "<group>"; };
 		2C0E916321F09AC400E6B86B /* UIImage+Crop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Crop.h"; sourceTree = "<group>"; };
 		2C0E916421F09AC400E6B86B /* UIImage+Crop.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Crop.m"; sourceTree = "<group>"; };
+		2C0E916B21F0B1C000E6B86B /* Asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Asset.xcassets; sourceTree = "<group>"; };
+		2C0E916D21F0BE0600E6B86B /* NSValue+CGPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSValue+CGPoint.h"; sourceTree = "<group>"; };
+		2C0E916E21F0BE0600E6B86B /* NSValue+CGPoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSValue+CGPoint.m"; sourceTree = "<group>"; };
 		2C26295F21EE13CF00566BDA /* FaceDetectOpenCVFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FaceDetectOpenCVFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C26296221EE13CF00566BDA /* FaceDetectOpenCVFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FaceDetectOpenCVFramework.h; sourceTree = "<group>"; };
 		2C26296321EE13CF00566BDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -109,15 +114,14 @@
 		2C26299B21EE2FE700566BDA /* LandmarkDetectorFunc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LandmarkDetectorFunc.cpp; sourceTree = "<group>"; };
 		2C262A3721EE351500566BDA /* FaceDetect.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FaceDetect.mm; sourceTree = "<group>"; };
 		2C262A3921EE352600566BDA /* FaceDetect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FaceDetect.h; sourceTree = "<group>"; };
-		2C262A3E21EF37E100566BDA /* HLGFacePoints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLGFacePoints.h; sourceTree = "<group>"; };
-		2C262A3F21EF37E100566BDA /* HLGFacePoints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLGFacePoints.m; sourceTree = "<group>"; };
+		2C262A3E21EF37E100566BDA /* FacePoints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacePoints.h; sourceTree = "<group>"; };
+		2C262A3F21EF37E100566BDA /* FacePoints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacePoints.m; sourceTree = "<group>"; };
 		2C262A4221EF3D7900566BDA /* FaceDetectOpenCVFrameworkTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FaceDetectOpenCVFrameworkTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		2C262A4321EF3D7A00566BDA /* FaceDetectTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FaceDetectTest.m; sourceTree = "<group>"; };
-		2C262A4521EF3E0900566BDA /* Asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Asset.xcassets; sourceTree = "<group>"; };
 		2C262A4D21EF4D5300566BDA /* classifiers */ = {isa = PBXFileReference; lastKnownFileType = folder; path = classifiers; sourceTree = "<group>"; };
 		2C262A4E21EF4D5300566BDA /* model */ = {isa = PBXFileReference; lastKnownFileType = folder; path = model; sourceTree = "<group>"; };
-		2C262A5621EF961400566BDA /* HLGFaceElement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLGFaceElement.h; sourceTree = "<group>"; };
-		2C262A5721EF961400566BDA /* HLGFaceElement.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLGFaceElement.m; sourceTree = "<group>"; };
+		2C262A5621EF961400566BDA /* FaceElement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FaceElement.h; sourceTree = "<group>"; };
+		2C262A5721EF961400566BDA /* FaceElement.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FaceElement.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +149,8 @@
 			children = (
 				2C0E916321F09AC400E6B86B /* UIImage+Crop.h */,
 				2C0E916421F09AC400E6B86B /* UIImage+Crop.m */,
+				2C0E916D21F0BE0600E6B86B /* NSValue+CGPoint.h */,
+				2C0E916E21F0BE0600E6B86B /* NSValue+CGPoint.m */,
 			);
 			path = "Custom Categories";
 			sourceTree = "<group>";
@@ -179,8 +185,8 @@
 				2C262A3721EE351500566BDA /* FaceDetect.mm */,
 				2C0E915E21F0922E00E6B86B /* PhotoCrop.h */,
 				2C0E915F21F0922E00E6B86B /* PhotoCrop.m */,
+				2C0E916B21F0B1C000E6B86B /* Asset.xcassets */,
 				2C0E916221F09AAE00E6B86B /* Custom Categories */,
-				2C262A4521EF3E0900566BDA /* Asset.xcassets */,
 			);
 			path = FaceDetectOpenCVFramework;
 			sourceTree = "<group>";
@@ -229,10 +235,10 @@
 				2C26299921EE2FE700566BDA /* FaceDetectFailedAlertView.m */,
 				2C26299321EE2FE700566BDA /* FaceARDetectIOS.h */,
 				2C26298621EE2FE700566BDA /* FaceARDetectIOS.mm */,
-				2C262A3E21EF37E100566BDA /* HLGFacePoints.h */,
-				2C262A3F21EF37E100566BDA /* HLGFacePoints.m */,
-				2C262A5621EF961400566BDA /* HLGFaceElement.h */,
-				2C262A5721EF961400566BDA /* HLGFaceElement.m */,
+				2C262A3E21EF37E100566BDA /* FacePoints.h */,
+				2C262A3F21EF37E100566BDA /* FacePoints.m */,
+				2C262A5621EF961400566BDA /* FaceElement.h */,
+				2C262A5721EF961400566BDA /* FaceElement.m */,
 			);
 			path = "Face Detect Classes";
 			sourceTree = "<group>";
@@ -293,20 +299,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C26299C21EE2FE700566BDA /* LandmarkDetectorModel.h in Headers */,
+				2C0E916A21F0A82700E6B86B /* FaceDetect.h in Headers */,
 				2C2629A021EE2FE700566BDA /* SVR_patch_expert.h in Headers */,
 				2C26299E21EE2FE700566BDA /* LandmarkDetectionValidator.h in Headers */,
 				2C2629B321EE2FE700566BDA /* PAW.h in Headers */,
 				2C26299F21EE2FE700566BDA /* stdafx.h in Headers */,
-				2C262A5821EF961400566BDA /* HLGFaceElement.h in Headers */,
+				2C262A5821EF961400566BDA /* FaceElement.h in Headers */,
 				2C2629A621EE2FE700566BDA /* LandmarkDetectorFunc.h in Headers */,
 				2C2629AE21EE2FE700566BDA /* CCNF_patch_expert.h in Headers */,
 				2C2629A721EE2FE700566BDA /* FaceDetectFailedAlertView.h in Headers */,
+				2C0E916F21F0BE0600E6B86B /* NSValue+CGPoint.h in Headers */,
 				2C2629AD21EE2FE700566BDA /* LandmarkCoreIncludes.h in Headers */,
 				2C2629A221EE2FE700566BDA /* PDM.h in Headers */,
 				2C0E916021F0922E00E6B86B /* PhotoCrop.h in Headers */,
 				2C0E916521F09AC400E6B86B /* UIImage+Crop.h in Headers */,
 				2C2629B221EE2FE700566BDA /* LandmarkDetectorUtils.h in Headers */,
-				2C262A4021EF37E100566BDA /* HLGFacePoints.h in Headers */,
+				2C262A4021EF37E100566BDA /* FacePoints.h in Headers */,
 				2C26297021EE13CF00566BDA /* FaceDetectOpenCVFramework.h in Headers */,
 				2C26299D21EE2FE700566BDA /* LandmarkDetectorParameters.h in Headers */,
 				2C2629A521EE2FE700566BDA /* Patch_experts.h in Headers */,
@@ -396,8 +404,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C0E916C21F0B1C000E6B86B /* Asset.xcassets in Resources */,
 				2C262A5021EF4D5300566BDA /* model in Resources */,
-				2C262A4621EF3E0900566BDA /* Asset.xcassets in Resources */,
 				2C262A4F21EF4D5300566BDA /* classifiers in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,7 +414,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C262A5121EF4EAB00566BDA /* Asset.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,10 +425,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C262A3821EE351500566BDA /* FaceDetect.mm in Sources */,
-				2C262A4121EF37E100566BDA /* HLGFacePoints.m in Sources */,
+				2C262A4121EF37E100566BDA /* FacePoints.m in Sources */,
 				2C2629AF21EE2FE700566BDA /* LandmarkDetectorParameters.cpp in Sources */,
 				2C2629AC21EE2FE700566BDA /* PAW.cpp in Sources */,
 				2C2629B621EE2FE700566BDA /* FaceDetectFailedAlertView.m in Sources */,
+				2C0E917021F0BE0600E6B86B /* NSValue+CGPoint.m in Sources */,
 				2C2629B421EE2FE700566BDA /* LandmarkDetectionValidator.cpp in Sources */,
 				2C2629A321EE2FE700566BDA /* FaceARDetectIOS.mm in Sources */,
 				2C2629A921EE2FE700566BDA /* LandmarkDetectorModel.cpp in Sources */,
@@ -433,7 +441,7 @@
 				2C0E916121F0922E00E6B86B /* PhotoCrop.m in Sources */,
 				2C2629B521EE2FE700566BDA /* PDM.cpp in Sources */,
 				2C2629B821EE2FE700566BDA /* LandmarkDetectorFunc.cpp in Sources */,
-				2C262A5921EF961400566BDA /* HLGFaceElement.m in Sources */,
+				2C262A5921EF961400566BDA /* FaceElement.m in Sources */,
 				2C2629AB21EE2FE700566BDA /* SVR_patch_expert.cpp in Sources */,
 				2C2629A821EE2FE700566BDA /* GazeEstimation.cpp in Sources */,
 			);
@@ -585,6 +593,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -626,6 +635,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;

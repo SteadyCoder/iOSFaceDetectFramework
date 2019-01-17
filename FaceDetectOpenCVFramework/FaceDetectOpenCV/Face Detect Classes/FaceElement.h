@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HLGFaceElement : NSObject
+@interface FaceElement : NSObject
 
 - (instancetype)initWithPoints:(NSArray<NSValue *> *)points;
 
@@ -24,14 +24,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface HLGChinElement : HLGFaceElement
+@interface ChinElement : FaceElement
 
 @property (nonatomic, readwrite) CGPoint topCentre;
 @property (nonatomic, readwrite) CGPoint bottomCentre;
 
 @end
 
-@interface HLGMouthElement : HLGFaceElement
+@interface MouthElement : FaceElement
 
 @property (nonatomic, readwrite) CGPoint leftCorner;
 @property (nonatomic, readwrite) CGPoint rightCorner;

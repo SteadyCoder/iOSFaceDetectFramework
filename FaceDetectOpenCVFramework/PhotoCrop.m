@@ -8,12 +8,12 @@
 
 #import "PhotoCrop.h"
 #import "Custom Categories/UIImage+Crop.h"
-#import "FaceDetectOpenCV/Face Detect Classes/HLGFacePoints.h"
-#import "FaceDetectOpenCV/Face Detect Classes/HLGFaceElement.h"
+#import "FaceDetectOpenCV/Face Detect Classes/FacePoints.h"
+#import "FaceDetectOpenCV/Face Detect Classes/FaceElement.h"
 
 @implementation PhotoCrop
 
-+ (UIImage *)facePhotoCrop:(HLGFacePoints *)facePoints photoToCrop:(UIImage *)photoToCrop {
++ (UIImage *)facePhotoCrop:(FacePoints *)facePoints photoToCrop:(UIImage *)photoToCrop {
     CGFloat width = photoToCrop.size.width;
     CGFloat height = photoToCrop.size.height;
     
