@@ -1,5 +1,5 @@
 //
-//  FacePoints.h
+//  FaceFeatures.h
 //  Halogram
 //
 //  Created by Ira on 02.04.18.
@@ -11,8 +11,9 @@
 #import <UIKit/UIKit.h>
 
 @class FaceElement, ChinElement, MouthElement;
+@class FacePoint;
 
-@interface FacePoints : NSObject
+@interface FaceFeatures : NSObject
 
 @property (nonatomic, strong) FaceElement *leftEye;
 @property (nonatomic, strong) FaceElement *rightEye;
@@ -26,7 +27,10 @@
 /**
  All points from openCV
  */
-@property (nonatomic) NSMutableArray<NSValue *> *allPointsFromOpenCV;
+@property (nonatomic, strong) NSMutableArray<NSValue *> *allPointsFromOpenCV;
+@property (nonatomic, strong) NSMutableArray<FacePoint *> *allPoints;
+
+@property (nonatomic, strong) NSArray<NSValue *> *controlPoints;
 
 /**
  @attention

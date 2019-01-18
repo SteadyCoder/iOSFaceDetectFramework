@@ -1,13 +1,14 @@
 //
-//  FacePoints.m
+//  FaceFeatures.m
 //  Halogram
 //
 //  Created by Ira on 02.04.18.
 //  Copyright © 2018 krestone. All rights reserved.
 //
 
-#import "FacePoints.h"
+#import "FaceFeatures.h"
 #import "FaceElement.h"
+#import "FacePoint.h"
 
 //OpenCV returns 68 face points
 //From 0 to 16 its chin points, from 17 to 21 its left eyebrow points etc
@@ -44,7 +45,7 @@ typedef NS_ENUM(NSUInteger, PointType) {
 };
 
 
-@implementation FacePoints
+@implementation FaceFeatures
 
 - (instancetype)initWithFaceDetectedPoints:(NSMutableArray<NSValue *> *)facePoints {
     if (self = [super init]) {
@@ -178,5 +179,74 @@ typedef NS_ENUM(NSUInteger, PointType) {
     [self.allPointsFromOpenCV addObjectsFromArray:arrayToAdd];
 }
 
+- (CGFloat)getFaceAngle {
+    CGFloat x = (self.allPointsFromOpenCV[LeftEyeLeftTip].CGPointValue.x + self.allPointsFromOpenCV[RightEyeRightTip].CGPointValue.x) / 2;
+    CGFloat y = (self.allPointsFromOpenCV[LeftEyeLeftTip].CGPointValue.y + self.allPointsFromOpenCV[RightEyeRightTip].CGPointValue.y) / 2;
+    CGPoint pointBetweenEyes = CGPointMake(x, y);
+    
+    CGPoint fakePoint = pointBetweenEyes;
+    fakePoint.y += 1000;
+
+    CGFloat angle = [self getAngleBetweenPoints:fakePoint pointTwo:pointBetweenEyes pointThree:self.allPointsFromOpenCV[51].CGPointValue];
+    if (self.allPointsFromOpenCV[51].CGPointValue.x < fakePoint.x) {
+        return angle;
+    }
+    return -angle;
+}
+
+- (void)normalizeOpenCVPoints {
+    CGPoint centrePoint = self.allPointsFromOpenCV[28].CGPointValue;
+    CGFloat angle = -[self getFaceAngle];
+    
+    NSArray<NSValue *> *copyOpenCVPoints = [[NSArray alloc] initWithArray:self.allPointsFromOpenCV copyItems:YES];
+    for (int i = 0; i < self.allPointsFromOpenCV.count; i++) {
+        self.allPointsFromOpenCV[i] = [NSValue valueWithCGPoint:[self rotatePointWithPoint:self.allPointsFromOpenCV[i].CGPointValue pivotPoint:centrePoint angle:angle]];
+    }
+    self.controlPoints = copyOpenCVPoints;
+}
+
+// ******************* EXTENSION **************
+- (CGFloat)getAngleBetweenPoints:(CGPoint)pointOne pointTwo:(CGPoint)pointTwo pointThree:(CGPoint)pointThree {
+    CGPoint vector1 = CGPointMake(pointOne.x - pointTwo.x, pointOne.y - pointTwo.y);
+    CGPoint vector2 = CGPointMake(pointThree.x - pointTwo.x, pointThree.y - pointTwo.y);
+    
+    CGFloat vector1Magnitude = sqrtf(vector1.x * vector1.x + vector1.y * vector1.y);
+    CGFloat vector2Magnitude = sqrtf(vector2.x * vector2.x + vector2.y * vector2.y);
+    
+    CGFloat temp = (vector1.x * vector2.x + vector1.y * vector2.y) / (vector1Magnitude * vector2Magnitude);
+    
+    temp = (temp < 1) ? temp : 1;
+    temp = (temp > -1) ? temp : -1;
+    return acosf(temp);
+}
+
+- (CGPoint)rotatePointWithPoint:(CGPoint)pointToRotate pivotPoint:(CGPoint)pivotPoint angle:(CGFloat)angle {
+    CGFloat s = sinf(angle);
+    CGFloat c = cosf(angle);
+    
+    CGPoint copyPoint = pointToRotate;
+    
+    copyPoint.x -= pivotPoint.x;
+    copyPoint.y -= pivotPoint.y;
+    
+    CGFloat newX = pivotPoint.x * c - pivotPoint.y * s;
+    CGFloat newY = pivotPoint.x * s + pivotPoint.y * c;
+    
+    copyPoint.x += newX + pivotPoint.x;
+    copyPoint.y += newY + pivotPoint.y;
+    
+    return CGPointMake(copyPoint.x, copyPoint.y);
+}
+
+- (NSMutableArray<FacePoint *> *)allPoints {
+    if (!_allPoints) {
+        _allPoints = [NSMutableArray arrayWithCapacity:self.allPointsFromOpenCV.count];
+        for (int i = 0; i < self.allPointsFromOpenCV.count; i++) {
+            CGPoint point = self.allPointsFromOpenCV[i].CGPointValue;
+            _allPoints[i] = [[FacePoint alloc] initWithX:point.x andY:point.y];
+        }
+    }
+    return _allPoints;
+}
 
 @end

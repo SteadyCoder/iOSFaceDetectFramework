@@ -11,11 +11,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class FacePoints;
+@class FaceFeatures;
 
 @interface PhotoCrop : NSObject
 
-+ (UIImage *)facePhotoCrop:(FacePoints *)facePoints photoToCrop:(UIImage *)photoToCrop;
++ (UIImage *)facePhotoCrop:(FaceFeatures *)facePoints photoToCrop:(UIImage *)photoToCrop;
 
 @end
 
