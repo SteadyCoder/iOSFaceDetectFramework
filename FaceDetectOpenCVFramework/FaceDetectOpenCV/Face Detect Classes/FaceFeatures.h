@@ -75,4 +75,6 @@
 
 - (instancetype)initWithFaceDetectedPoints:(NSMutableArray<NSValue *> *)facePoints NS_DESIGNATED_INITIALIZER;
 
++ (CGFloat)getAngleBetweenPoints:(CGPoint)pointOne pointTwo:(CGPoint)pointTwo pointThree:(CGPoint)pointThree;
+
 @end

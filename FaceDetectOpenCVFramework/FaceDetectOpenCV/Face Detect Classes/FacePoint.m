@@ -62,5 +62,8 @@
     return [NSString stringWithFormat:@"%f %f %f", self.x, self.y, self.z];
 }
 
+- (CGPoint)cgPoint {
+    return CGPointMake(self.x, self.y);
+}
 
 @end

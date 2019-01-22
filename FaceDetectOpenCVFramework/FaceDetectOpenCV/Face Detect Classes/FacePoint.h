@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)nullPoint;
 
+- (CGPoint)cgPoint;
 
 @end
 

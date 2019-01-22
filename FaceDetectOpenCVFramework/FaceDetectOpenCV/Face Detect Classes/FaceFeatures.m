@@ -187,7 +187,7 @@ typedef NS_ENUM(NSUInteger, PointType) {
     CGPoint fakePoint = pointBetweenEyes;
     fakePoint.y += 1000;
 
-    CGFloat angle = [self getAngleBetweenPoints:fakePoint pointTwo:pointBetweenEyes pointThree:self.allPointsFromOpenCV[51].CGPointValue];
+    CGFloat angle = [FaceFeatures getAngleBetweenPoints:fakePoint pointTwo:pointBetweenEyes pointThree:self.allPointsFromOpenCV[51].CGPointValue];
     if (self.allPointsFromOpenCV[51].CGPointValue.x < fakePoint.x) {
         return angle;
     }
@@ -206,7 +206,7 @@ typedef NS_ENUM(NSUInteger, PointType) {
 }
 
 // ******************* EXTENSION **************
-- (CGFloat)getAngleBetweenPoints:(CGPoint)pointOne pointTwo:(CGPoint)pointTwo pointThree:(CGPoint)pointThree {
++ (CGFloat)getAngleBetweenPoints:(CGPoint)pointOne pointTwo:(CGPoint)pointTwo pointThree:(CGPoint)pointThree {
     CGPoint vector1 = CGPointMake(pointOne.x - pointTwo.x, pointOne.y - pointTwo.y);
     CGPoint vector2 = CGPointMake(pointThree.x - pointTwo.x, pointThree.y - pointTwo.y);
     
