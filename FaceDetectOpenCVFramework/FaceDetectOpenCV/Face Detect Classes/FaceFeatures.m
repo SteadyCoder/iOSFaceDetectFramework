@@ -209,7 +209,7 @@ typedef NS_ENUM(NSUInteger, PointType) {
     self.controlPoints = copyOpenCVPoints;
 }
 
-
+// ******************* EXTENSION **************
 + (CGFloat)getAngleBetweenPoints:(CGPoint)pointOne pointTwo:(CGPoint)pointTwo pointThree:(CGPoint)pointThree {
     CGPoint vector1 = CGPointMake(pointOne.x - pointTwo.x, pointOne.y - pointTwo.y);
     CGPoint vector2 = CGPointMake(pointThree.x - pointTwo.x, pointThree.y - pointTwo.y);

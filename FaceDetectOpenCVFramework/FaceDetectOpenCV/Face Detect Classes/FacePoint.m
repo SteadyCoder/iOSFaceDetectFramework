@@ -66,5 +66,4 @@
     return [NSString stringWithFormat:@"%f %f %f", self.x, self.y, self.z];
 }
 
-
 @end
