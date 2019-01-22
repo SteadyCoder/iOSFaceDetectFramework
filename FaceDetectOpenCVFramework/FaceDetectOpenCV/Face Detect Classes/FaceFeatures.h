@@ -72,7 +72,10 @@
 @property (nonatomic, readonly) CGPoint rightEyeDown;
 
 @property (nonatomic, readonly) CGFloat angleOfHead;
+@property (nonatomic, readonly) CGPoint headCentrePoint;
 
 - (instancetype)initWithFaceDetectedPoints:(NSMutableArray<NSValue *> *)facePoints NS_DESIGNATED_INITIALIZER;
+
++ (CGFloat)getAngleBetweenPoints:(CGPoint)pointOne pointTwo:(CGPoint)pointTwo pointThree:(CGPoint)pointThree;
 
 @end

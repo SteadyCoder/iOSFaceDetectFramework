@@ -58,6 +58,10 @@
     return self;
 }
 
+- (CGPoint)cgPoint {
+    return CGPointMake(self.x, self.y);
+}
+
 - (NSString *)description {
     return [NSString stringWithFormat:@"%f %f %f", self.x, self.y, self.z];
 }

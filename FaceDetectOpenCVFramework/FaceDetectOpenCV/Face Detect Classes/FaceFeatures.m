@@ -96,12 +96,9 @@ typedef NS_ENUM(NSUInteger, PointType) {
         _allPointsFromOpenCV = facePoints;
         CGPoint rightCheek = [[facePoints objectAtIndex:RightCheek] CGPointValue];
         CGPoint leftCheek = [[facePoints objectAtIndex:LeftCheek] CGPointValue];
-        _angleOfHead = atan2(fabs(rightCheek.y - leftCheek.y), rightCheek.x - leftCheek.x) * 180 / M_PI;
-        if (leftCheek.y > rightCheek.y) {
-            _angleOfHead -= 180;
-        } else {
-            _angleOfHead = 180 - _angleOfHead;
-        }
+        _angleOfHead = [self getFaceAngle];
+        
+        [self addLipsFakePoint];
     }
     return self;
 }
@@ -137,6 +134,13 @@ typedef NS_ENUM(NSUInteger, PointType) {
     
     return chinHeight;
 }
+
+- (CGPoint)headCentrePoint {
+    return self.allPointsFromOpenCV[28].CGPointValue;
+}
+
+// MAKR: Additional methods
+// ******************* EXTENSION **************
 
 - (CGFloat)calculateSmile {
     CGPoint point48 = self.allPointsFromOpenCV[48].CGPointValue;
@@ -187,7 +191,7 @@ typedef NS_ENUM(NSUInteger, PointType) {
     CGPoint fakePoint = pointBetweenEyes;
     fakePoint.y += 1000;
 
-    CGFloat angle = [self getAngleBetweenPoints:fakePoint pointTwo:pointBetweenEyes pointThree:self.allPointsFromOpenCV[51].CGPointValue];
+    CGFloat angle = [FaceFeatures getAngleBetweenPoints:fakePoint pointTwo:pointBetweenEyes pointThree:self.allPointsFromOpenCV[51].CGPointValue];
     if (self.allPointsFromOpenCV[51].CGPointValue.x < fakePoint.x) {
         return angle;
     }
@@ -205,8 +209,8 @@ typedef NS_ENUM(NSUInteger, PointType) {
     self.controlPoints = copyOpenCVPoints;
 }
 
-// ******************* EXTENSION **************
-- (CGFloat)getAngleBetweenPoints:(CGPoint)pointOne pointTwo:(CGPoint)pointTwo pointThree:(CGPoint)pointThree {
+
++ (CGFloat)getAngleBetweenPoints:(CGPoint)pointOne pointTwo:(CGPoint)pointTwo pointThree:(CGPoint)pointThree {
     CGPoint vector1 = CGPointMake(pointOne.x - pointTwo.x, pointOne.y - pointTwo.y);
     CGPoint vector2 = CGPointMake(pointThree.x - pointTwo.x, pointThree.y - pointTwo.y);
     
